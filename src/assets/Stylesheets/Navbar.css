@@ -1,37 +1,52 @@
-/* src/components/Navbar.css */
+/* src/assets/Stylesheets/Navbar.css */
+
+.menuDesktop {
+    display: none;
+}
+
+.menuMobile {
+    display: flex;
+}
+
+/* Show desktop menu items and hide mobile menu items on larger screens */
+@media (min-width: 600px) {
+    .menuDesktop {
+        display: flex;
+    }
+    .menuMobile {
+        display: none;
+    }
+}
+
+/* Make the navbar background slightly opaque and more opaque on hover */
 .navbar {
-    display: flex;
+    background-color: rgba(255, 255, 255, 0.8) !important; /* Add a subtle white background with opacity */
+    transition: background-color 0.3s ease !important;
+    position: fixed; /* Fixed position to stay at the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.navbar:hover {
+    background-color: rgba(255, 255, 255, 1) !important; /* Make it fully opaque on hover */
+}
+
+/* Set default text color to black for better contrast */
+.navbar .MuiToolbar-root {
     justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 1rem 2rem;
 }
 
-.navbar-brand a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
+.navbar .MuiButton-root,
+.navbar .MuiTypography-root,
+.navbar .MuiIconButton-root {
+    color: black !important; /* Ensure the text color is black */
+    font-family: 'Playfair Display', serif;
 }
 
-.navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-.navbar-links li {
-    margin: 0;
-}
-
-.navbar-links a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s;
-}
-
-.navbar-links a:hover {
-    background-color: #575757;
-    border-radius: 4px;
+/* Optionally adjust text color on hover */
+.navbar:hover .MuiButton-root,
+.navbar:hover .MuiTypography-root,
+.navbar:hover .MuiIconButton-root {
+    color: black !important; /* Ensure the text color remains black on hover */
 }

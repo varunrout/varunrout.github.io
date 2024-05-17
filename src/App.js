@@ -1,19 +1,16 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
-import Footer from './components/Footer';
 
 const App = () => {
     return (
         <Router>
             <div className="App">
-                <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
@@ -21,7 +18,6 @@ const App = () => {
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
-                <Footer />
             </div>
         </Router>
     );
