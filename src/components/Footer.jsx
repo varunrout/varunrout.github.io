@@ -1,18 +1,32 @@
 // src/components/Footer.js
 import React from 'react';
-import '../assets/Stylesheets/Footer.css';
+import { Box, Typography, Link } from '@mui/material';
+import '../assets/Stylesheets/Footer.css'; // If you have additional custom styles
 
 const Footer = () => (
-    <footer className="footer">
-        <div className="footer-content">
-            <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
-            <div className="social-links">
-                <a href="www.linkedin.com/in/varunrout" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://github.com/varunrout" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-            </div>
-        </div>
-    </footer>
+    <Box
+        component="footer"
+        sx={{
+            py: 3,
+            px: 2,
+            mt: 'auto',
+            backgroundColor: (theme) =>
+                theme.palette.mode === 'light'
+                    ? theme.palette.grey[200]
+                    : theme.palette.grey[800],
+        }}
+    >
+        <Typography variant="body1" align="center">
+            &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+        </Typography>
+        <Box display="flex" justifyContent="center" mt={2}>
+            <Link href="https://www.linkedin.com" color="inherit" target="_blank" rel="noopener">LinkedIn</Link>
+            <Box mx={2}>|</Box>
+            <Link href="https://github.com" color="inherit" target="_blank" rel="noopener">GitHub</Link>
+            <Box mx={2}>|</Box>
+            <Link href="https://twitter.com" color="inherit" target="_blank" rel="noopener">Twitter</Link>
+        </Box>
+    </Box>
 );
 
 export default Footer;
