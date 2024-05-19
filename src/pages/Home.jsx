@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import ProjectDeck from '../components/ProjectDeck';
 import sampleData from '../assets/Data/sampleData';
+import AboutMe from "../components/AboutMe";
 
 const Home = () => {
     return (
@@ -25,6 +26,9 @@ const Home = () => {
                     </Grid>
                     <Grid item xs={12}>
                         <ProjectDeck projects={sampleData} />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <AboutMe />
                     </Grid>
                 </Grid>
             </Container>
