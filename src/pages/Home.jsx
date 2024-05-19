@@ -8,9 +8,18 @@ import sampleData from '../assets/Data/sampleData';
 const Home = () => {
     return (
         <div>
-            <Navbar />
+            {/*<Container>*/}
+            {/*    <Grid container spacing={3}>*/}
+            {/*        <Grid item xs={12}>*/}
+            {/*            <Navbar />*/}
+            {/*        </Grid>*/}
+            {/*    </Grid>*/}
+            {/*</Container>*/}
             <Container>
                 <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <Navbar />
+                    </Grid>
                     <Grid item xs={12}>
                         <Banner />
                     </Grid>

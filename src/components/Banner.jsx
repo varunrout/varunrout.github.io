@@ -25,7 +25,7 @@ const slideIn = keyframes`
 `;
 
 const BannerContainer = styled(Box)(({ theme }) => ({
-    width: '96%',
+    // width: '100%',
     height: '400px',
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: 'cover',
