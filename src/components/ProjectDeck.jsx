@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ProjectCard from './ProjectCard';
 
 const ProjectDeckContainer = styled(Box)(({ theme }) => ({
-    width: '97%',
+    width: '100%',
     padding: theme.spacing(2),
     display: 'flex',
     borderRadius: '15px',

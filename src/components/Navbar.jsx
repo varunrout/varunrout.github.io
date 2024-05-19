@@ -13,7 +13,7 @@ const NavbarContainer = styled(AppBar)(({ theme }) => ({
     borderRadius: '10px',
     margin: '10px auto',
     boxShadow: theme.shadows[4],
-    width: '99%',
+    width: '100%',
 }));
 
 const LinkButton = styled(Button)(({ theme }) => ({
