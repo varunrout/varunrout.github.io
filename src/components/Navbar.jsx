@@ -1,68 +1,108 @@
-// src/components/Navbar.js
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Button, Drawer, List, ListItem, ListItemText, Grid } from '@mui/material';
+import React from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Switch, Avatar, Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
-import '../assets/Stylesheets/Navbar.css';
+import CloseIcon from '@mui/icons-material/Close';
+
+const NavbarContainer = styled(AppBar)(({ theme }) => ({
+    backgroundColor: theme.palette.primary.main,
+    color: '#ffffff',
+    borderRadius: '10px',
+    margin: '10px auto',
+    boxShadow: theme.shadows[4],
+    width: '99%',
+}));
+
+const LinkButton = styled(Button)(({ theme }) => ({
+    color: '#ffffff',
+    margin: theme.spacing(0, 2),
+}));
 
 const Navbar = () => {
-    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [darkMode, setDarkMode] = React.useState(false);
+    const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+    const handleThemeChange = () => {
+        setDarkMode(!darkMode);
+    };
 
     const toggleDrawer = (open) => () => {
         setDrawerOpen(open);
     };
 
-    const handleLinkClick = () => {
-        setDrawerOpen(false);
-    };
-
-    const menuItems = [
-        { text: 'Start Here', path: '/' },
-        { text: 'About', path: '/about' },
-        { text: 'Portfolio', path: '/portfolio' },
-        { text: 'Blog', path: '/blog' },
-        { text: 'Contact', path: '/contact' },
-    ];
-
     const drawerList = (
-        <List>
-            {menuItems.map((item, index) => (
-                <ListItem button key={index} component={Link} to={item.path} onClick={handleLinkClick}>
-                    <ListItemText primary={item.text} />
-                </ListItem>
-            ))}
-        </List>
+        <Box
+            sx={{ width: 250 }}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <IconButton onClick={toggleDrawer(false)} sx={{ marginLeft: 'auto' }}>
+                <CloseIcon />
+            </IconButton>
+            <List>
+                {['About', 'Portfolio', 'Blogs'].map((text) => (
+                    <ListItem button key={text}>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+            <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+                <IconButton color="inherit">
+                    <LinkedInIcon />
+                </IconButton>
+                <IconButton color="inherit">
+                    <GitHubIcon />
+                </IconButton>
+                <IconButton color="inherit">
+                    <TwitterIcon />
+                </IconButton>
+                <Switch checked={darkMode} onChange={handleThemeChange} />
+            </Box>
+        </Box>
     );
 
     return (
-        <AppBar position="static" className="navbar">
+        <NavbarContainer position="static">
             <Toolbar>
-                <Grid container alignItems="center">
-                    <Grid item xs={6} sm={4}>
-                        <Typography variant="h6" component="div">
-                            Varun Rout
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6} sm={8} container justifyContent="flex-end">
-                        <div className="menuDesktop">
-                            {menuItems.map((item, index) => (
-                                <Button color="inherit" key={index} component={Link} to={item.path}>
-                                    {item.text}
-                                </Button>
-                            ))}
-                        </div>
-                        <div className="menuMobile">
-                            <IconButton edge="end" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-                                <MenuIcon />
-                            </IconButton>
-                            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
-                                {drawerList}
-                            </Drawer>
-                        </div>
-                    </Grid>
-                </Grid>
+                <Typography variant="h6" sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
+                    MyPortfolio
+                </Typography>
+                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+                    <LinkButton>About</LinkButton>
+                    <LinkButton>Portfolio</LinkButton>
+                    <LinkButton>Blogs</LinkButton>
+                </Box>
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <IconButton color="inherit">
+                        <LinkedInIcon />
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <GitHubIcon />
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <TwitterIcon />
+                    </IconButton>
+                    <Switch checked={darkMode} onChange={handleThemeChange} />
+                    <Avatar alt="Profile Picture" src="/path/to/profile.jpg" />
+                </Box>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="end"
+                    onClick={toggleDrawer(true)}
+                    sx={{ display: { xs: 'block', md: 'none' } }}
+                >
+                    <MenuIcon />
+                </IconButton>
             </Toolbar>
-        </AppBar>
+            <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
+                {drawerList}
+            </Drawer>
+        </NavbarContainer>
     );
 };
 
